@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Code Editor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c643f6eae7.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-image: linear-gradient(180deg, #49030f 0%, #000000 100%);       
+        }
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .code-editor {
+            width: 80%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: Consolas, monospace;
+            min-height: 200px;
+        }
+        .output-container {
+            width: 80%;
+            margin-top: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+        i{
+            width: 50px;
+            color: #fff;
+        }
+        .btn{
+            background-color: white;
+            color: #49030f;
+        }
+        input{
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container editor-container">
+        <h1 class="text-center" style="color: white;">Online Code Editor</h1>
+        <label><i class="fa-brands fa-html5"></i> <i class="fa-brands fa-css3-alt"></i> <i class="fa-brands fa-js"></i></label>
+        <div class="code-editor rounded" id="editor" contenteditable="true" style="background-color: #fff;">
+
+        </div>
+        <button class="btn btn-primary mt-3" id="run-button">Run Code</button>
+        <div class="output-container mt-3">
+            <h3 style="color: white;">Output:</h3>
+            <iframe id="output" frameborder="0" style="background-color: #fff;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const codeEditor = document.getElementById('editor');
+        const runButton = document.getElementById('run-button');
+        const outputFrame = document.getElementById('output');
+
+        runButton.addEventListener('click', () => {
+            const code = codeEditor.innerText;
+            const iframeDocument = outputFrame.contentDocument;
+            iframeDocument.open();
+            iframeDocument.write(code);
+            iframeDocument.close();
+        });
+    </script>
+</body>
+</html>
